@@ -135,7 +135,7 @@ image_tensor = preprocess_image(pil_image)
 # show original + top predictions
 col1, col2 = st.columns([1, 2])
 with col1:
-    st.image(pil_image, caption="Uploaded image", use_container_width=True)
+    st.image(pil_image, caption="Uploaded image", use_column_width=True)
 
 with col2:
     st.subheader("Top predictions (ResNet18)")
