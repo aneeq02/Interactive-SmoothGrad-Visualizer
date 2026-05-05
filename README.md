@@ -87,10 +87,3 @@ Tip: For live demos, use n=25 for SmoothGrad to halve the wait time with minimal
 
 ---
 
-## What the Paper Showed (your key talking points)
-
-1. Raw gradients are noisy because ReLU networks have discontinuous derivatives
-2. Averaging gradients over n noisy images smooths out local fluctuations
-3. Optimal σ is 10–20% of the pixel value range
-4. Diminishing returns after n ≈ 50 samples
-5. SmoothGrad can be combined with any gradient-based method
