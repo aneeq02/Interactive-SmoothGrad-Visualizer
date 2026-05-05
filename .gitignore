@@ -1,0 +1,60 @@
+# ─── Virtual Environment ───
+venv/
+env/
+.env/
+.venv/
+
+# ─── Python ───
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ─── PyTorch / Model Weights ───
+*.pt
+*.pth
+*.ckpt
+*.bin
+
+# ─── Torchvision cache (auto-downloaded pretrained weights) ───
+~/.cache/torch/
+torch_cache/
+
+# ─── Jupyter Notebooks ───
+.ipynb_checkpoints/
+*.ipynb
+
+# ─── Streamlit ───
+.streamlit/
+
+# ─── Experiment outputs ───
+outputs/
+results/
+figures/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+
+# ─── Uploaded test images ───
+test_images/
+sample_images/
+
+# ─── OS & IDE (Windows) ───
+Thumbs.db
+desktop.ini
+.DS_Store
+.idea/
+.vscode/
+*.suo
+*.user
+
+# ─── Logs ───
+*.log
+logs/
