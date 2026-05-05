@@ -1,6 +1,5 @@
 """
-gradients.py  —  Person A's file
-Handles: model loading, vanilla gradient, SmoothGrad, Integrated Gradients, Guided Backprop
+gradients.py  —  Model loading, vanilla gradient, SmoothGrad, Integrated Gradients, Guided Backprop
 Model: ResNet18 pretrained on ImageNet (no training needed)
 """
 

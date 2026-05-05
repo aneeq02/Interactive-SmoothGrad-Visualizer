@@ -1,6 +1,5 @@
 """
-visualize.py  —  Person B's file
-Handles: all saliency map rendering, post-processing, matplotlib figure creation
+visualize.py  —  Saliency map rendering, post-processing, matplotlib figure creation
 """
 
 import numpy as np

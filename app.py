@@ -1,9 +1,6 @@
 """
 app.py  —  Main Streamlit app
 Run with:  streamlit run app.py
-
-This is the interactive web UI for the SmoothGrad visualizer.
-Person B owns this file. Person A owns gradients.py.
 """
 
 import io
