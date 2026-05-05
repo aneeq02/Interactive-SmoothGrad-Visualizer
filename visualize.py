@@ -146,13 +146,14 @@ def render_comparison(pil_image, grads_dict,
 # ─────────────────────────────────────────────
 #  Noise level grid  (reproduces Figure 3 of paper)
 # ─────────────────────────────────────────────
-def render_noise_grid(pil_image, grad_fn, class_idx, sigmas, n_samples=50):
+def render_noise_grid(pil_image, model, grad_fn, class_idx, sigmas, n_samples=50):
     """
     Show how noise level σ affects the saliency map quality.
     Reproduces Figure 3 from the SmoothGrad paper.
 
     Args:
         pil_image: PIL Image
+        model: pretrained ResNet (needed for the σ=0 vanilla gradient case)
         grad_fn: callable(image_tensor, class_idx, sigma, n) → grad array
                  (this will be the smoothgrad function from gradients.py)
         class_idx: integer
@@ -162,7 +163,7 @@ def render_noise_grid(pil_image, grad_fn, class_idx, sigmas, n_samples=50):
     Returns:
         matplotlib Figure
     """
-    from gradients import preprocess_image
+    from gradients import preprocess_image, vanilla_gradient
 
     image_tensor = preprocess_image(pil_image)
     original = pil_to_display_array(pil_image)
@@ -179,8 +180,7 @@ def render_noise_grid(pil_image, grad_fn, class_idx, sigmas, n_samples=50):
     for i, sigma in enumerate(sigmas):
         if sigma == 0.0:
             # sigma=0 is just vanilla gradient
-            from gradients import vanilla_gradient
-            grad = vanilla_gradient(model=None, image_tensor=image_tensor, class_idx=class_idx)
+            grad = vanilla_gradient(model, image_tensor, class_idx)
             label = "Vanilla (σ=0)"
         else:
             grad = grad_fn(image_tensor, class_idx, sigma, n_samples)

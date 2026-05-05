@@ -6,6 +6,7 @@ This is the interactive web UI for the SmoothGrad visualizer.
 Person B owns this file. Person A owns gradients.py.
 """
 
+import io
 import streamlit as st
 import torch
 from PIL import Image
@@ -28,6 +29,14 @@ from visualize import (
     render_sample_grid,
     render_discriminativity,
 )
+
+
+def fig_to_png(fig):
+    """Render a matplotlib figure to a PNG bytes buffer for download."""
+    buf = io.BytesIO()
+    fig.savefig(buf, format="png", bbox_inches="tight", dpi=150)
+    buf.seek(0)
+    return buf
 
 
 # ─────────────────────────────────────────────
@@ -184,6 +193,8 @@ with tab1:
             multiply_input=multiply_input
         )
         st.pyplot(fig)
+        st.download_button("⬇ Save PNG", data=fig_to_png(fig),
+                           file_name="comparison_all_methods.png", mime="image/png")
         st.caption("Lighter pixels = higher importance to the model's decision.")
 
 
@@ -213,6 +224,8 @@ with tab2:
         fig = render_comparison(pil_image, grads_by_sigma,
                                 use_absolute=use_absolute, percentile_cap=percentile_cap)
         st.pyplot(fig)
+        st.download_button("⬇ Save PNG", data=fig_to_png(fig),
+                           file_name="figure3_noise_levels.png", mime="image/png")
         st.caption("Notice how maps become cleaner with moderate noise, then degrade at very high σ.")
 
 
@@ -235,6 +248,8 @@ with tab3:
         fig = render_comparison(pil_image, grads_by_n,
                                 use_absolute=use_absolute, percentile_cap=percentile_cap)
         st.pyplot(fig)
+        st.download_button("⬇ Save PNG", data=fig_to_png(fig),
+                           file_name="figure4_sample_counts.png", mime="image/png")
         st.caption("Maps get smoother as n increases, with diminishing returns after n≈50.")
 
 
@@ -262,4 +277,6 @@ with tab4:
 
         fig = render_discriminativity(pil_image, grad1, grad2, choice1, choice2)
         st.pyplot(fig)
+        st.download_button("⬇ Save PNG", data=fig_to_png(fig),
+                           file_name="figure6_discriminativity.png", mime="image/png")
         st.caption("A good method should highlight different regions for different classes.")
